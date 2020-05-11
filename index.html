@@ -1,7 +1,1562 @@
+
+
+<!DOCTYPE html>
 <html>
-<head>
-<title>Testing as of now</title>
-</head>
-<body>
-Hello World
-</body>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+       <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+       
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">-->
+    <style type="text/css">
+        body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+     background-color: #22475E;
+  scroll-behavior: smooth;
+}
+
+#card1 {
+    display:none;
+}
+
+.card-header {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    margin-bottom:5px;
+    padding:5px;
+}
+
+.card {
+    max-width: 100%;
+    margin: auto;
+    text-align: center;
+    font-family: arial;
+    color: #000;
+    background: #22475E;
+    background-repeat:no-repeat;
+    background-image:cover;
+    background-attachment:fixed;
+}
+
+
+.collapsible {
+  background-color: #777;
+  color: white;
+  cursor: pointer;
+  padding: 10px;
+  width: 100%;
+  border: none;
+  text-align: center;
+  outline: none;
+  font-size: 14px;
+}
+
+.collapsible:after {
+  /*content: '\002B';*/
+  color: white;
+  font-weight: bold;
+  float: right;
+  margin-left: 5px;
+}
+
+.content1, .totalContent1 {
+  max-height: 300px;
+  /*overflow: hidden;*/
+  transition: max-height 0.2s ease-out;
+  margin-bottom:7px;
+}
+
+.content1 span {
+    display:-moz-inline-block;
+    display:-moz-inline-box;
+    display:inline-block;
+    padding: 15px;
+    overflow:hidden; /* just in case a value goes out of bounds */
+    width:100%;
+    font:normal 15px/18px arial,helvetica,sans-serif;
+    position:relative;
+}
+
+.totalContent span {
+    display:-moz-inline-block;
+    display:-moz-inline-box;
+    display:inline-block;
+    padding: 10px 5px;
+    overflow:hidden; /* just in case a value goes out of bounds */
+    width:100%;
+    font:normal 13px/16px arial,helvetica,sans-serif;
+    position:relative;
+    background: #fff;
+}
+
+.totalContent1 span {
+    display:-moz-inline-block;
+    display:-moz-inline-box;
+    display:inline-block;
+    padding: 10px 5px;
+    overflow:hidden; /* just in case a value goes out of bounds */
+    width:100%;
+    font:normal 13px/16px arial,helvetica,sans-serif;
+    position:relative;
+    background: #fff;
+}
+
+#chartContainer, #chartContainer1, #chartContainer2, #chartContainer3, #chartContainer4 {
+    overflow-x:scroll;
+    overflow-y:hidden;
+}
+
+.card p {
+    color: #FFF;
+}
+
+#top10 button {
+    width:100%;
+}
+
+.model-body {
+    padding: 5px;
+}
+
+.model-body ul li {
+    list-style-type: none;
+    padding:5px;
+}
+
+.model-body li:nth-child(odd):before{
+  content:'\2713';
+  display:inline-block;
+  vertical-align: top;
+  line-height: 1em;
+  font-size:2em;
+  width: 1em;
+  height:0.5em;
+  margin-right: 0.3em;
+  text-align: center;
+  color: green;
+}
+
+.model-body li:nth-child(even):before{
+  content:'\0058';
+  display:inline-block;
+  vertical-align: top;
+  line-height: 1em;
+  font-size:2em;
+  width: 1em;
+  height:0.5em;
+  margin-right: 0.3em;
+  text-align: center;
+  color: red;
+}
+
+.model p {
+    color : #000;
+    text-align:center ;
+}
+
+.info {
+    margin-bottom: 10px;
+    color:#fff;
+    padding: 5px 0;
+    border-width: 1px;
+    border-radius: 15px;
+    box-shadow: 1px 2px 10px 0px rgba(0, 0, 0, 0.3);
+}
+
+.title {
+    color: grey;
+    font-size: 18px;
+}
+
+#profile_img {
+    border-radius: 50%;
+    border-style: solid;
+    border:5px solid coral;
+}
+
+#footer button {
+    border: none;
+    outline: 0;
+    display: inline-block;
+    padding: 8px;
+    color: white;
+    background-color: #000;
+    text-align: center;
+    cursor: pointer;
+    width: 100%;
+    font-size: 18px;
+}
+
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+#footer button:hover, a:hover {
+    opacity: 0.7;
+}
+
+.loader div {
+  width: 50px;
+  height: 50px;
+  position: absolute;
+  background-color: #ccc;
+  top: 45%;
+  padding-top:13px;
+  font-size:18px;
+  text-align:center;
+  border-radius: 50%;
+}
+
+.loader div:nth-child(1) {
+  background-color: #FF5460;
+  animation: move 2s infinite cubic-bezier(.2,.64,.81,.23);
+}
+.loader div:nth-child(2) {
+  background-color: #FF9D84;
+  animation: move 2s 150ms infinite cubic-bezier(.2,.64,.81,.23);
+}
+.loader div:nth-child(3) {
+  background-color: #F0E797;
+  animation: move 2s 300ms infinite cubic-bezier(.2,.64,.81,.23);
+}
+.loader div:nth-child(4) {
+  background-color: #75B08A;
+  animation: move 2s 450ms infinite cubic-bezier(.2,.64,.81,.23);
+}
+
+
+@keyframes move {
+  0% {left: 0%;}
+  100% {left:100%;}
+}
+
+
+/* Safari */
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.text-white {
+    font-weight:bold;
+    font-size:20px;
+}
+
+#countryList {
+    margin-top : 10px;
+    margin-bottom : 10px;
+}
+
+/*the container must be positioned relative:*/
+.custom-select {
+  position: relative;
+  font-family: Arial;
+}
+
+.custom-select select {
+  display: none; /*hide original SELECT element:*/
+}
+
+.select-selected {
+  background-color: DodgerBlue;
+}
+
+/*style the arrow inside the select element:*/
+.select-selected:after {
+  position: absolute;
+  content: "";
+  top: 14px;
+  right: 10px;
+  width: 0;
+  height: 0;
+  border: 6px solid transparent;
+  border-color: #fff transparent transparent transparent;
+}
+
+/*point the arrow upwards when the select box is open (active):*/
+.select-selected.select-arrow-active:after {
+  border-color: transparent transparent #fff transparent;
+  top: 7px;
+}
+
+/*style the items (options), including the selected item:*/
+.select-items div,.select-selected {
+  color: #ffffff;
+  padding: 8px 16px;
+  border: 1px solid transparent;
+  border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
+  cursor: pointer;
+  user-select: none;
+}
+
+/*style items (options):*/
+.select-items {
+  position: absolute;
+  background-color: blue;
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: 99;
+}
+
+/*hide the items when the select box is closed:*/
+.select-hide {
+  display: none;
+}
+
+.select-items div:hover, .same-as-selected {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.title {
+    color: grey;
+    font-size: 18px;
+}
+
+#profile_img {
+    border-radius: 50%;
+    border-style: solid;
+    border:5px solid coral;
+}
+
+#footer button {
+    border: none;
+    outline: 0;
+    display: inline-block;
+    padding: 8px;
+    color: white;
+    background-color: #000;
+    text-align: center;
+    cursor: pointer;
+    width: 100%;
+    font-size: 18px;
+}
+
+/* Style the tab content */
+.tabcontent {
+  display: none;
+  padding: 6px 12px;
+  border: 1px solid #ccc;
+  border-top: none;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  height: 500px;
+}
+
+
+/* Safari */
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+
+.dropdown {
+    margin-bottom:5px;
+}
+
+.nocase {
+    display:none;
+}
+
+.nocase .flip-box {
+  background-color: transparent;
+  height: 90px;
+  width: 100%;
+  perspective: 1000px;
+}
+
+.content1 .flip-box {
+  background-color: transparent;
+  height: 180px;
+  width: 100%;
+  perspective: 1000px;
+}
+
+.flip-box-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+}
+
+.flip-box:hover .flip-box-inner {
+  transform: rotateY(180deg);
+}
+
+.flip-box-front, .flip-box-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+.flip-box-front {
+  background-color: #bbb;
+  color: black;
+  padding:5px;
+  border-bottom-width:5px;
+    border-bottom-style: solid;
+    border-bottom-color: coral;
+}
+
+.flip-box-back {
+  background-color: dodgerblue;
+  color: white;
+  padding:5px;
+  transform: rotateY(180deg);
+  border-bottom-width:5px;
+    border-bottom-style: solid;
+    border-bottom-color: coral;
+}
+
+.fa {font-size:50px;}
+
+.count {
+    font-size:30px;
+}
+
+.count1 {
+    font-size:20px;
+}
+
+.search_by_city {
+  background-repeat: no-repeat;
+  width: 50%;
+  font-size: 14px;
+  text-transform:uppercase;
+  border: 5px solid transparent;
+  border-color: #fff transparent transparent transparent;
+  color: #000;
+  margin-top:2px;
+  margin-bottom:5px;
+}
+
+@media all and (max-width: 600px) {
+  .content1 .flip-box {
+      height: 180px;
+    }
+    
+    .search_by_city {
+        width: 70%;
+    }
+    
+    .count1 {
+        font-size:15px;
+    }
+}
+
+@media all and (min-width: 600px) and (max-width: 768px) {
+  .content1 .flip-box {
+      height: 180px;
+    }
+    
+    .search_by_city {
+        width: 70%;
+    }
+    
+    .count1 {
+        font-size:15px;
+    }
+}
+
+.card-body {
+    padding:10px;
+}
+    </style>   
+    <script type="text/javascript">
+        alert("Ignore console. It's not a problem of code!");
+
+const newData = new Map();
+var countriesData    = null;
+
+console.log = function() {}
+
+window.onload = function(){
+    $(".loader").css("display", "block");
+    $("#card1").css("display", "none");
+    $(".chartContainer4").css("display", "none");
+    
+    httpGet('https://www.trackcorona.live/api/countries');
+}
+
+function httpGet(link) {
+    if(link !== null && link !== undefined && link !== "") {
+        $.ajax({
+            url: link,
+            success: function(data) {
+                //console.log(data)]
+                
+                addCountriesToList(data);
+                getReport();
+                
+                //const d1 = new Date(data.Date);
+                
+                //$('.collapsible').html('<b id = "label">Cases Global</b> <br>Today Till<br> (' + d1.toString() + ")");
+                $('.collapsible').html('<b id = "label">Cases Global</b> <br>Today Till<br> (' + new Date() + ")");
+                $("#card1").css("display", "block");
+                $(".tabcontent").css("display", "block");
+                $(".loader").css("display", "none");
+            },
+            error: function() {
+                alert("System seems to be offline, try again!");
+            }
+        });
+    }
+}
+
+function addCountriesToList(data1){
+    
+        countriesData   = data1.data;
+    var countryList     = document.getElementById('countryList');
+    
+    /*var globalReport    =  data.Global;
+    
+    var globalData  = {};
+    
+    globalData.NewConfirmed     = globalReport.NewConfirmed;
+    globalData.TotalConfirmed   = globalReport.TotalConfirmed;
+    globalData.NewDeaths        = globalReport.NewDeaths;
+    globalData.TotalDeaths      = globalReport.TotalDeaths;
+    globalData.NewRecovered     = globalReport.NewRecovered;
+    globalData.TotalRecovered   = globalReport.TotalRecovered;
+    globalData.Date             = new Date();
+    newData.set('global', globalData);*/
+    
+    var TotalConfirmed = 0;
+    var TotalDeaths = 0;
+    var TotalRecovered  = 0;
+    
+    //alert(data1)
+    
+    for(var i = 0; i < countriesData.length; i++) {
+        var totalActive = countriesData[i].confirmed - countriesData[i].recovered - countriesData[i].dead;
+        
+        if(totalActive > 0) {
+            var opt         = document.createElement('option');
+            opt.value       = countriesData[i].country_code;
+            opt.innerHTML   = countriesData[i].location + " (" + (countriesData[i].country_code).toUpperCase() + ")";
+            countryList.appendChild(opt);
+            
+            TotalConfirmed  += countriesData[i].confirmed;
+            TotalDeaths     += countriesData[i].dead;
+            TotalRecovered  += countriesData[i].recovered;
+            
+            var object  = {};
+            
+            object.NewConfirmed     = 0;
+            object.TotalConfirmed   = countriesData[i].confirmed;
+            object.NewDeaths        = 0;
+            object.TotalDeaths      = countriesData[i].dead;
+            object.NewRecovered     = 0;
+            object.TotalRecovered   = countriesData[i].recovered;
+            object.Date             = countriesData[i].updated;
+            newData.set(countriesData[i].country_code, object);
+        }
+    }
+    
+    var globalData  = {};
+    
+    globalData.NewConfirmed     = 0;
+    globalData.TotalConfirmed   = TotalConfirmed;
+    globalData.NewDeaths        = 0;
+    globalData.TotalDeaths      = TotalDeaths;
+    globalData.NewRecovered     = 0;
+    globalData.TotalRecovered   = TotalRecovered;
+    globalData.Date             = new Date();
+    newData.set('global', globalData);
+    
+    sortList();
+    
+    $("#countryList").val("global");
+    /*var opt1         = document.createElement('option');
+    opt1.value       = 'france';
+    opt1.innerHTML   = 'France' + " ( FR )";
+    countryList.appendChild(opt1);*/
+}
+
+function sortList() { 
+    $("#countryList").append($("#countryList option") 
+              .remove().sort(function(a, b) { 
+        var at = $(a).text(), 
+        bt = $(b).text(); 
+        return (at > bt) ? 1 : ((at < bt) ? -1 : 0); 
+    })); 
+} 
+
+function getReport() {
+    var report          = $('#countryList').val();
+    var globalReport    = newData.get(report);
+    
+    $('#city').val('');
+    
+    if(globalReport == null) {
+        getDataByCountry(report);
+    } else {
+        setData(report, globalReport, 1);
+    }
+}
+
+function setData(report, globalReport, type) {
+    var TotalConfirmed      = globalReport.TotalConfirmed;
+    var TotalRecovered      = globalReport.TotalRecovered;
+    var TotalDeaths         = globalReport.TotalDeaths;
+    
+    var totalActive = TotalConfirmed - globalReport.TotalRecovered - globalReport.TotalDeaths;
+    var newActive   = globalReport.NewConfirmed - globalReport.NewRecovered - globalReport.NewDeaths;
+    
+    var activePer       = (totalActive / TotalConfirmed) * 100;
+    var deathPer        = (TotalDeaths / TotalConfirmed) * 100;
+    var recoveredPer    = (TotalRecovered / TotalConfirmed) * 100;
+    
+    $('#totalConfirmed').html('😦😦😦 Confirmed Cases 😦😦😦<br><br> <b class="count">' + (TotalConfirmed) + '</b>');
+    
+    $('#newConfirmed').html('😦😦😦 Confirmed Cases 😦😦😦<br><br> <b class="count1">' + convertNumberToWord(TotalConfirmed) + '</b>');
+    
+    $('#totalRecovered').html('💃💃💃 Recovered Cases 🕺🕺🕺<br><br> <b class="count">' + (TotalRecovered) + '</b> (' + recoveredPer.toFixed(2) + ' %)');
+    
+    $('#newRecovered').html('💃💃💃 Recovered Cases 🕺🕺🕺<br><br> <b class="count1">' + convertNumberToWord(TotalRecovered) + '</b>');
+    
+    $('#totalDeath').html('😢😢😢 Deaths Cases 😢😢😢 <br><br> <b class="count">' + (TotalDeaths) + '</b> (' + deathPer.toFixed(2) + ' %)');
+    
+    $('#newDeath').html('😢😢😢 Deaths Cases 😢😢😢<br><br> <b class="count1">' + convertNumberToWord(TotalDeaths) + '</b>');
+    
+    $('#totalActive').html('😔😔😔 Active Cases 😔😔😔<br> (Confirmed - Recovered - Deaths) <br><br> <b class="count">' + (totalActive) + '</b> (' + activePer.toFixed(2) + ' %)');
+    
+    $('#newActive').html('😔😔😔 Active Cases 😔😔😔<br> (Confirmed - Recovered - Deaths) <br><br> <b class="count1">' + convertNumberToWord(totalActive) + '</b>');
+    
+    counterWithCommasNumber();
+    
+    if(totalActive === 0) {
+       $(".chartContainer2").css("display", "none");
+       $(".chartContainer3").css("display", "none");
+       $(".chartContainer4").css("display", "none");
+       $(".content1").css("display", "none");
+       $(".nocase").css("display", "block");
+       
+       if(type === 3) {
+            $("#label").html("Cases in " + report.toUpperCase());
+        } else {
+            $("#label").html("Cases in " + $('#countryList option:selected').text());
+        }
+       return;
+    } else {
+       $(".chartContainer2").css("display", "block");
+       $(".chartContainer3").css("display", "block");
+       $(".content1").css("display", "block");
+       $(".nocase").css("display", "none");
+    }
+    
+    showGraph('subjectwise', '', TotalConfirmed, TotalRecovered, TotalDeaths);
+    
+    if(report != 'global') {
+        getLiveDataByCountry(report);
+        $(".chartContainer4").css("display", "block");
+        $('.collapsible').html('<b id = "label">Cases Global</b> <br>Updated Till<br> (' + getZDate(globalReport.Date) + ")");
+        
+        if(type === 3) {
+            $("#label").html("Cases in " + report.toUpperCase());
+        } else {
+            $("#label").html("Cases in " + $('#countryList option:selected').text());
+        }
+    } else {
+        $(".chartContainer4").css("display", "none");
+        $('.collapsible').html('<b id = "label">Cases Global</b> <br>Today Till<br> (' + new Date() + ")");
+        $("#label").html("Cases Global");
+    }
+}
+
+
+function getRandomColor() {
+  var letters = '0123456789ABCDEF';
+  var color = '#';
+  for (var i = 0; i < 6; i++) {
+    color += letters[Math.floor(Math.random() * 16)];
+  }
+  return color;
+}
+
+function getTopTenCountriesByDeath() {
+    countriesData.sort(function(a, b) {
+        return b.dead - a.dead
+    });
+    
+    var totalXP = [];
+
+    for(var j = 0; j < 10; j++) {
+        var obj1  = countriesData[j];
+                
+        totalXP.push({
+            label : obj1.location, y : obj1.dead
+        });
+    }
+    
+    var options = {
+        theme: "dark2",
+        width: 450,
+        height:260,
+        animationEnabled: true,
+        legend: {
+            maxWidth: 350,
+            itemWidth: 120
+        },
+
+        data: [{
+                type: "doughnut",
+                innerRadius: "40%",
+                toolTipContent: "<b>{label}</b>: {y} (#percent%)",
+                indexLabelFontSize: 12,
+                showInLegend: "true",
+                legendText: "{label}",
+                indexLabel: "{label} (#percent%)",
+                //yValueFormatString: "#,##0,,.## Million",
+                dataPoints: totalXP
+        }]
+    };
+    
+    var options1 = {
+        theme: "dark2",
+        width: 450,
+        height:260,
+        animationEnabled: true,
+        legend: {
+            maxWidth: 350,
+            itemWidth: 120
+        },
+
+        data: [{
+                type: "column",
+                indexLabelFontSize: 12,
+                //yValueFormatString: "#,##0,,.## Million",
+                dataPoints: totalXP
+        }]
+    };
+
+    $("#chartContainer").CanvasJSChart(options);
+    $("#chartContainer1").CanvasJSChart(options1);
+    $(".modal-title").html("Top Ten Countries By Death");
+    $("#myModal").modal('show');
+}
+
+function getTopTenCountriesByTotal() {
+    countriesData.sort(function(a, b) {
+        return b.confirmed - a.confirmed
+    });
+    
+    var totalXP = [];
+
+    for(var j = 0; j < 10; j++) {
+        var obj1  = countriesData[j];
+                
+        totalXP.push({
+            label : obj1.location, y : obj1.confirmed
+        });
+    }
+    
+    var options = {
+        theme: "dark2",
+        width: 450,
+        height:260,
+        animationEnabled: true,
+        legend: {
+            maxWidth: 350,
+            itemWidth: 120
+        },
+
+        data: [{
+                type: "doughnut",
+                innerRadius: "40%",
+                toolTipContent: "<b>{label}</b>: {y} (#percent%)",
+                indexLabelFontSize: 12,
+                showInLegend: "true",
+                legendText: "{label}",
+                indexLabel: "{label} (#percent%)",
+                //yValueFormatString: "#,##0,,.## Million",
+                dataPoints: totalXP
+        }]
+    };
+
+    var options1 = {
+        theme: "dark2",
+        width: 450,
+        height:260,
+        animationEnabled: true,
+        legend: {
+            maxWidth: 350,
+            itemWidth: 120
+        },
+
+        data: [{
+                type: "column",
+                indexLabelFontSize: 12,
+                //yValueFormatString: "#,##0,,.## Million",
+                dataPoints: totalXP
+        }]
+    };
+
+    $("#chartContainer").CanvasJSChart(options);
+    $("#chartContainer1").CanvasJSChart(options1);
+    $(".modal-title").html("Top Ten Countries By Total Cases");
+    $("#myModal").modal('show');
+}
+
+function getTopTenCountriesByActive() {
+    countriesData.sort(function(a, b) {
+        return (b.confirmed - b.recovered - b.dead) - (a.confirmed - a.recovered - a.dead)
+    });
+    
+    var totalXP = [];
+
+    for(var j = 0; j < 10; j++) {
+        var obj1  = countriesData[j];
+                
+        totalXP.push({
+            label : obj1.location, y : (obj1.confirmed - obj1.recovered - obj1.dead)
+        });
+    }
+    
+    var options = {
+        theme: "dark2",
+        width: 450,
+        height:260,
+        animationEnabled: true,
+        legend: {
+            maxWidth: 350,
+            itemWidth: 120
+        },
+
+        data: [{
+                type: "doughnut",
+                innerRadius: "40%",
+                toolTipContent: "<b>{label}</b>: {y} (#percent%)",
+                indexLabelFontSize: 12,
+                showInLegend: "true",
+                legendText: "{label}",
+                indexLabel: "{label} (#percent%)",
+                //yValueFormatString: "#,##0,,.## Million",
+                dataPoints: totalXP
+        }]
+    };
+
+    var options1 = {
+        theme: "dark2",
+        width: 450,
+        height:260,
+        animationEnabled: true,
+        legend: {
+            maxWidth: 350,
+            itemWidth: 120
+        },
+
+        data: [{
+                type: "column",
+                indexLabelFontSize: 12,
+                //yValueFormatString: "#,##0,,.## Million",
+                dataPoints: totalXP
+        }]
+    };
+
+    $("#chartContainer").CanvasJSChart(options);
+    $("#chartContainer1").CanvasJSChart(options1);
+    $(".modal-title").html("Top Ten Countries By Active Cases");
+    $("#myModal").modal('show');
+}
+
+function someInfo() {
+    $(".modal-title").html("Some prevention on Corona Virus");
+    $("#myModal1").modal('show');
+}
+
+function showGraph(id, cnt, confirmed, recovered, deaths) {
+    
+    if(id) {
+
+        var active = confirmed - recovered - deaths;
+        var totalXP = [];
+
+       //totalXP.push({label : 'Confirmed', y : confirmed});
+       totalXP.push({label : 'Recovered', y : recovered});
+       totalXP.push({label : 'Deaths', y : deaths});
+       totalXP.push({label : 'Active', y : active});
+       
+       CanvasJS.addColorSet("colorShades",
+                [//colorSet Array
+
+                "#4C9900",
+                "#CC0000",
+                "#FF8000"               
+                ]);
+        
+        var options = {
+            //theme: "dark2",
+            width: 400,
+            height:260,
+            animationEnabled: true,
+            colorSet: "colorShades",
+            title:{
+                text: "Confirmed Cases (Active + Deaths + Recovered)",
+                fontFamily: "tahoma",
+                fontWeight: "bold",
+                fontSize: 14
+            },
+            legend: {
+                maxWidth: 350,
+                itemWidth: 120
+            },
+    
+            data: [{
+                    type: "doughnut",
+                    innerRadius: "40%",
+                    toolTipContent: "<b>{label}</b>: {y} (#percent%)",
+                    indexLabelFontSize: 12,
+                    showInLegend: "true",
+                    legendText: "{label}",
+                    indexLabel: "{label} (#percent%)",
+                    //yValueFormatString: "#,##0,,.## Million",
+                    dataPoints: totalXP
+            }]
+        };
+        
+        var options1 = {
+            //theme: "dark2",
+            width: 400,
+            height:260,
+            animationEnabled: true,
+            colorSet: "colorShades",
+            title:{
+                text: "Confirmed Cases (Active + Deaths + Recovered)",
+                fontFamily: "tahoma",
+                fontWeight: "bold",
+                fontSize: 14
+            },
+            legend: {
+                maxWidth: 350
+            },
+    
+            data: [{
+                    type: "column",
+                    //yValueFormatString: "#,##0,,.## Million",
+                    dataPoints: totalXP
+            }]
+        };
+
+        $("#chartContainer2").CanvasJSChart(options);
+        $("#chartContainer3").CanvasJSChart(options1);
+    }
+}
+
+function getLiveDataByCountry(country) {
+    $.ajax({
+            url: "https://api.covid19api.com/live/country/" + country,
+            success: function(data) {
+                //console.log(data)]
+                getDailyData(data);
+            },
+            error: function() {
+                alert("System seems to be offline, try again!");
+            }
+        });
+}
+
+function getDailyData(data) {
+    var totalConfirmed  = [];
+    var totalDeaths     = [];
+    var totalRecovered  = [];
+    var totalActive     = [];
+    
+    if(data.length == 0) {
+        $(".chartContainer4").css("display", "none");
+        return;
+    }
+    
+    $(".chartContainer4").css("display", "block");
+    
+    for(var i = 0; i < data.length; i++) {
+        totalConfirmed.push({
+            x : new Date(data[i].Date), 
+            y : data[i].Confirmed
+        });
+        
+        totalDeaths.push({
+            x : new Date(data[i].Date), 
+            y : data[i].Deaths
+        });
+        
+        totalRecovered.push({
+            x : new Date(data[i].Date), 
+            y : data[i].Recovered
+        });
+        
+        totalActive.push({
+            x : new Date(data[i].Date), 
+            y : data[i].Active
+        });
+    }
+
+        
+        var options = {
+            animationEnabled: true,
+            zoomEnabled: true,
+            theme: "light2",
+            height:260,
+            width: 400,
+           title:{
+                text: "Daily Report",
+                fontSize: 14
+            },
+            axisX:{
+                valueFormatString: "DD MMM",
+                crosshair: {
+                    enabled: true,
+                    snapToDataPoint: true
+                }
+            },
+            axisY: {
+                title: "Cases",
+                crosshair: {
+                    enabled: true
+                }
+            },
+            toolTip: {
+                shared: true
+            },
+            legend: {
+                cursor:"pointer",
+                verticalAlign: "bottom",
+                itemclick: toggleDataSeries
+            },
+            data: [{
+                type: "line",
+                name: "Confirmed",
+                color: "#369EAD",
+                showInLegend: true,
+                markerType: "square",
+                xValueFormatString: "DD MMM, YYYY",
+                yValueFormatString: "0",
+                dataPoints: totalConfirmed
+            },
+            {
+                type: "line",
+                name: "Deaths",
+                color: "#C24642",
+                showInLegend: true,
+                lineDashType: "dash",
+                xValueFormatString: "DD MMM, YYYY",
+                yValueFormatString: "0",
+                dataPoints: totalDeaths
+            },
+            {
+                type: "line",
+                name: "Recovered",
+                color: "green",
+                showInLegend: true,
+                lineDashType: "dash",
+                markerType: "square",
+                xValueFormatString: "DD MMM, YYYY",
+                yValueFormatString: "0",
+                dataPoints: totalRecovered
+            },
+            {
+                type: "line",
+                name: "Active",
+                color: "#7F6084",
+                lineDashType: "dash",
+                showInLegend: true,
+                xValueFormatString: "DD MMM, YYYY",
+                yValueFormatString: "0",
+                dataPoints: totalActive
+            }]
+        };
+
+        $("#chartContainer4").CanvasJSChart(options);
+}
+
+function toggleDataSeries(e) {
+    if (typeof (e.dataSeries.visible) === "undefined" || e.dataSeries.visible) {
+        e.dataSeries.visible = false;
+    } else {
+        e.dataSeries.visible = true;
+    }
+    e.chart.render();
+}
+
+function someInfo() {
+    $(".modal-title").html("Some prevention on Corona Virus");
+    $("#myModal1").modal('show');
+}
+
+function getZDate(date) {
+    const months = ["Jan", "Feb", "Mar","Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+    
+    let current_datetime = new Date(date);
+    
+    let formatted_date = current_datetime.getDate() + " " + months[current_datetime.getMonth()] + ", " + current_datetime.getFullYear() + " " + formatAMPM(current_datetime);
+    
+    return formatted_date;
+    
+}
+
+function formatAMPM(date) {
+  var hours     = date.getHours();
+  var minutes   = date.getMinutes();
+  var seconds   = date.getSeconds();
+  var ampm      = hours >= 12 ? 'PM' : 'AM';
+  hours = hours % 12;
+  hours = hours ? hours : 12; // the hour '0' should be '12'
+  hours = hours < 10 ? '0' + hours : hours;
+  minutes = minutes < 10 ? '0' + minutes : minutes;
+  var strTime = hours + ':' + minutes + ':' + seconds + ' ' + ampm;
+  return strTime;
+}
+
+function numberWithCommas(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+
+function counterWithCommasNumber() {
+    $('.count').each(function () {
+        $(this).prop('Counter',0).animate({
+            Counter: $(this).text()
+        }, {
+            duration: 1000,
+            easing: 'swing',
+            step: function (now) {
+                $(this).text(Math.ceil(now).toLocaleString('en'));
+            }
+        });
+    });
+}
+
+function getDataByCountry(report) {
+    $.ajax({
+            //url: "https://api.covid19api.com/country/" + report,
+            url : "https://www.trackcorona.live/api/countries/" + report,
+            success: function(data) {
+                //console.log(data)]
+                setDataOfCountry(report, data);
+            },
+            error: function() {
+                alert("System seems to be offline, try again!");
+            }
+        });
+}
+
+function setDataOfCountry(report, data1) {
+    var object  = {};
+    
+    var data    = data1.data;
+    
+    var TotalConfirmed  = 0;
+    var TotalDeaths     = 0;
+    var TotalRecovered  = 0;
+    
+    for(var i = 0; i < data.length; i++) {
+        TotalConfirmed   += data[i].confirmed;
+        TotalDeaths      += data[i].dead;
+        TotalRecovered   += data[i].recovered;
+    }
+    
+    object.NewConfirmed     = 0;
+    object.TotalConfirmed   = TotalConfirmed;
+    object.NewDeaths        = 0;
+    object.TotalDeaths      = TotalDeaths;
+    object.NewRecovered     = 0;
+    object.TotalRecovered   = TotalRecovered;
+    
+    setData(report, object, 2);
+}
+
+function disableConsole() {
+    console.log     = function(){};
+    console.error   = function(){};
+    window.onerror = function() {
+        console = null;
+        return true;
+    }
+}
+
+window.addEventListener("touchstart", ontouchmove);
+window.addEventListener("touchmove", ontouchmove);
+window.addEventListener("touchend", ontouchmove);
+
+function ontouchmove(e){
+  if(e.cancelable){
+    e.cancelable = false;
+    disableConsole();
+  }
+}
+
+function convertNumberToWord(inputNumber) {
+
+    var str     = new String(inputNumber);
+    var splt     = str.split("");
+    var rev     = splt.reverse();
+    var once     = ['Zero', ' One', ' Two', ' Three', ' Four', ' Five', ' Six', ' Seven', ' Eight', ' Nine'];
+    var twos     = ['Ten', ' Eleven', ' Twelve', ' Thirteen', ' Fourteen', ' Fifteen', ' Sixteen', ' Seventeen', ' Eighteen', ' Nineteen'];
+    var tens     = ['', 'Ten', ' Twenty', ' Thirty', ' Forty', ' Fifty', ' Sixty', ' Seventy', ' Eighty', ' Ninety'];
+
+    numLength     = rev.length;
+    var word     = new Array();
+    var j         = 0;
+
+    for (i = 0; i < numLength; i++) {
+        switch (i) {
+            case 0:
+                if ((rev[i] == 0) || (rev[i + 1] == 1)) {
+                    word[j] = '';
+                } else {
+                    word[j] = '' + once[rev[i]];
+                }
+                word[j] = word[j];
+                break;
+
+            case 1:
+                aboveTens();
+                break;
+
+            case 2:
+                if (rev[i] == 0) {
+                    word[j] = '';
+                } else if ((rev[i - 1] == 0) || (rev[i - 2] == 0)) {
+                    word[j] = once[rev[i]] + " Hundred ";
+                } else {
+                    word[j] = once[rev[i]] + " Hundred and";
+                }
+                break;
+
+            case 3:
+                if (rev[i] == 0 || rev[i + 1] == 1) {
+                    word[j] = '';
+                } else {
+                    word[j] = once[rev[i]];
+                }
+                
+                if ((rev[i + 1] != 0) || (rev[i] > 0)) {
+                    word[j] = word[j] + " Thousand";
+                }
+                break;
+
+                
+            case 4:
+                aboveTens();
+                break;
+
+            case 5:
+                if ((rev[i] == 0) || (rev[i + 1] == 1)) {
+                    word[j] = '';
+                } else {
+                    word[j] = once[rev[i]];
+                }
+                
+                if (rev[i + 1] !== '0' || rev[i] > '0') {
+                    word[j] = word[j] + " Lakh";
+                }
+                 
+                break;
+
+            case 6:
+                aboveTens();
+                break;
+
+            case 7:
+                if ((rev[i] == 0) || (rev[i + 1] == 1)) {
+                    word[j] = '';
+                } else {
+                    word[j] = once[rev[i]];
+                }
+               
+                if (rev[i + 1] !== '0' || rev[i] > '0') {
+                    word[j] = word[j] + " Crore";
+                }                
+                break;
+
+            case 8:
+                aboveTens();
+                break;
+
+            default: break;
+        }
+        j++;
+    }
+
+    function aboveTens() {
+        if (rev[i] == 0) { word[j] = ''; }
+        else if (rev[i] == 1) { word[j] = twos[rev[i - 1]]; }
+        else { word[j] = tens[rev[i]]; }
+    }
+
+    word.reverse();
+    var finalOutput = '';
+   
+    for (i = 0; i < numLength; i++) {
+        finalOutput = finalOutput + word[i];
+    }
+    
+    return finalOutput;
+}
+
+function findByCity() {
+   var city = $('#city').val();
+   
+   if(city == "") {
+       alert('Please enter city !');
+       return;
+   }
+   
+   $("#countryList").val("zero");
+   
+   $.ajax({
+            //url: "https://api.covid19api.com/country/" + report,
+        url : "https://www.trackcorona.live/api/cities/" + city,
+        success: function(data) {
+            //console.log(data)]
+            setDataOfCity(city, data);
+        },
+        error: function() {
+            alert("System seems to be offline, try again!");
+        }
+    });
+}
+
+function setDataOfCity(city, data1) {
+    var object  = {};
+    
+    var data    = data1.data;
+    
+    var TotalConfirmed  = 0;
+    var TotalDeaths     = 0;
+    var TotalRecovered  = 0;
+    var updateDate      = new Date();
+    
+    for(var i = 0; i < data.length; i++) {
+        if(city.toUpperCase() == (data[i].location).toUpperCase()) {
+            TotalConfirmed   += data[i].confirmed;
+            TotalDeaths      += data[i].dead;
+            TotalRecovered   += data[i].recovered;
+            updateDate      = data[i].updated;
+        }
+    }
+    
+    object.NewConfirmed     = 0;
+    object.TotalConfirmed   = TotalConfirmed;
+    object.NewDeaths        = 0;
+    object.TotalDeaths      = TotalDeaths;
+    object.NewRecovered     = 0;
+    object.TotalRecovered   = TotalRecovered;
+    object.Date             = updateDate;
+    
+    setData(city, object, 3);
+}
+    </script>
+    </head>
+    <body>
+        <div class="loader">
+            <div>Y</div>
+            <div>A</div>
+            <div>J</div>
+            <div>A</div>
+        </div>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-8">
+                    <div class="card" id="card1">
+                        <div class= "card-header bg-primary text-white">Real Time Covid-19 Info - V.2</div>
+                        <div class="card-body">
+                            <div id = "top10">
+                                <div class="dropdown">
+                                    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                                      Top 10 Country
+                                    </button>
+                                    <div class="dropdown-menu">
+                                        <button onclick="getTopTenCountriesByDeath()" class="btn btn-danger">Top 10 Country By Death</button>
+                                        <button onclick="getTopTenCountriesByTotal()" class="btn btn-primary">Top 10 Country By Total Cases</button>
+                                        <button onclick="getTopTenCountriesByActive()" class="btn btn-info">Top 10 Country By Active Cases</button>
+                                    </div>
+                                </div>
+                                <div>
+                                    <button onclick="someInfo()" class="btn btn-success">Some Prevention on Corona Virus</button>
+                                </div>
+                            </div>
+                            <div class = "text-white">Select Your Country</div>
+                            <select id="countryList" class="custom-select" style="width:300px;" onchange = "getReport()">
+                                <option value = "zero">Select Your Country</option>
+                                <option value = "global">Global Report</option>
+                            </select>
+                            <div class = "text-white">
+                                <input type = "text" name = "City" class = "search_by_city" id = "city" placeholder = "Search by City"/>
+                                <button type = "button" class = "btn btn-info btn-sm" onclick="findByCity()">Find</button>
+                            </div>
+                            <div id="profileDetails">
+                                <button class = "collapsible bg-info">Total Summary</button>
+                                <span class="" style = "color: #fff">Click on boxes to show in Words</span>
+                                <div class="nocase">
+                                    <div class="flip-box">
+                                      <div class="flip-box-inner">
+                                        <div class="flip-box-front bg-success text-white">
+                                            <i class="fa fa-smile-o"></i>
+                                            <br>No Cases
+                                        </div>
+                                        <div class="flip-box-back bg-success text-white">
+                                            <i class="fa fa-smile-o"></i>
+                                            <br>No Cases
+                                        </div>
+                                      </div>
+                                    </div>
+                                </div>
+                                <div class="content1">
+                                    <div class="flip-box">
+                                      <div class="flip-box-inner">
+                                        <div class="flip-box-front bg-primary text-white">
+                                            <i class="fa fa-user"></i>
+                                          <span id = "totalConfirmed" class = "confirmed"><br><br> Total Confirmed</span>
+                                        </div>
+                                        <div class="flip-box-back">
+                                            <i class="fa fa-user"></i>
+                                          <span id = "newConfirmed"><br><br> Total Recovered</span>
+                                        </div>
+                                      </div>
+                                    </div>
+                                </div>
+                                <div class="content1">
+                                    <div class="flip-box">
+                                      <div class="flip-box-inner">
+                                        <div class="flip-box-front bg-danger text-white">
+                                            <i class="fa fa-frown-o" aria-hidden="true"></i>
+                                          <span id = "totalDeath" class="death"><br><br> Total Deaths</span>
+                                        </div>
+                                        <div class="flip-box-back">
+                                            <i class="fa fa-frown-o" aria-hidden="true"></i>
+                                          <span id = "newDeath"><br><br> Total Deaths</span>
+                                        </div>
+                                      </div>
+                                    </div>
+                                </div>
+                                <div class="content1">
+                                    <div class="flip-box">
+                                      <div class="flip-box-inner">
+                                        <div class="flip-box-front bg-success text-white">
+                                            <i class="fa fa-smile-o"></i>
+                                          <span id = "totalRecovered" class = "recovered"><br><br> Total Recovered</span>
+                                        </div>
+                                        <div class="flip-box-back">
+                                            <i class="fa fa-smile-o"></i>
+                                          <span id = "newRecovered"><br><br> Total Recovered</span>
+                                        </div>
+                                      </div>
+                                    </div>
+                                </div>
+                                <div class="content1">
+                                    <div class="flip-box">
+                                      <div class="flip-box-inner">
+                                        <div class="flip-box-front bg-warning">
+                                            <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+                                          <span id = "totalActive"><br><br> Total Active</span>
+                                        </div>
+                                        <div class="flip-box-back">
+                                            <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+                                          <span id = "newActive"><br><br> New Active</span>
+                                        </div>
+                                      </div>
+                                    </div>
+                                </div>
+                                <div id="chartContainer2" class = "chartContainer2" style="height: 280px; width: 100%;"></div>
+                                <div class = "chartContainer2">   
+                                    <p>Click on circle to check details.</p>
+                                </div>
+                                <div id="chartContainer3" class = "chartContainer3" style="height: 280px; width: 100%;"></div>
+                                <div class = "chartContainer3">
+                                    <p>Click on box to check details.</p>
+                                </div>
+                                <div id="chartContainer4" class = "chartContainer4" style="height: 280px; width: 100%;"></div>
+                                <div class = "chartContainer4">
+                                    <p>Click on box to check details.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer bg-info text-white">Copyright @ <script>document.write(new Date().getFullYear());</script> <b class="name" id="name1"></b></div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal" id="myModal">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                
+                        <!-- Modal Header -->
+                        <div class="modal-header bg-primary text-white">
+                            <h6 class="modal-title">Top 10 Countries Info</h6>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+                        <div id="chartContainer" style="height: 280px; width: 100%;"></div>
+                        <div>
+                            <p>Click on circle to check details.</p>
+                        </div>
+                        <div id="chartContainer1" style="height: 280px; width: 100%;"></div>
+                        <div>
+                            <p>Click on box to check details.</p>
+                        </div>
+                                            <!-- Modal footer -->
+                        <div class="modal-footer bg-info text-white">
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                        
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal" id="myModal1">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                
+                            <!-- Modal Header -->
+                        <div class="modal-header bg-primary text-white">
+                            <h6 class="modal-title">Prevent the spread of COVID-19</h6>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+                        <div class = "model-body">
+                            <ul>
+                                <li>Wash your hands for at least 20 seconds, several times a day. Use soap and water or a hand sanitizer with at least 60% alcohol.</li>
+                                <li>Don’t touch your eyes, nose or mouth.</li>
+                                <li>Maintain a safe distance from anyone who is coughing or sneezing.</li>
+                                <li>Don’t travel if you have a fever. If you get sick on flight, tell crew immediately. When you get home, contact a health professional.</li>
+                                <li>Cover your nose and mouth with your bent elbow or a tissue when you cough or sneeze.</li>
+                                <li>Don’t panic. Public health officials still say the risk of becoming infected with COVID-19 is low, but your risk level is likely to rise as the virus spreads across the country.</li>
+                                <li>Stay home if you feel unwell.</li>
+                                <li>Don’t skip the flu shot. The symptoms of COVID-19 and flu overlap enough that it can complicate diagnosis. If you’ve had a flu shot, you’re less likely to catch the flu or have a case serious enough to require treatment.</li>
+                                <li>If you have a fever, a cough, and difficulty breathing, seek medical attention. Call in advance.</li>
+                                <li>Don’t go to the doctor unless it’s urgent. And reschedule your dental cleaning. The CDC is urging all health care professionals to focus on emergency treatments now.</li>
+                                <li>Follow the directions of your local health authority.</li>
+                                <li>Don't go near seniors or those at higher risk for severe illness. You may be able to transmit the virus even if you feel fine. Now is not the time to pay a visit to grandma, or your friend with asthma.</li>
+                                <li>Treat the sickness. Keep the sick person hydrated with plenty of fluids, and use over-the-counter medications for individual symptoms.</li>
+                            </ul>
+                        </div>
+                
+                            <!-- Modal footer -->
+                        <div class="modal-footer bg-info text-white">
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script type="text/javascript" src="https://canvasjs.com/assets/script/jquery.canvasjs.min.js"></script>
+    </body>
+</html>
+
