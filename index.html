@@ -1,5 +1,4 @@
 
-
 <!DOCTYPE html>
 <html>
     <head>
@@ -7,11 +6,11 @@
         <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-       <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
        
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">-->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <style type="text/css">
         body {
     margin: 0;
@@ -484,7 +483,7 @@ a {
 }
     </style>   
     <script type="text/javascript">
-        alert("Ignore console. It's not a problem of code!");
+       
 
 const newData = new Map();
 var countriesData    = null;
@@ -528,19 +527,6 @@ function addCountriesToList(data1){
     
         countriesData   = data1.data;
     var countryList     = document.getElementById('countryList');
-    
-    /*var globalReport    =  data.Global;
-    
-    var globalData  = {};
-    
-    globalData.NewConfirmed     = globalReport.NewConfirmed;
-    globalData.TotalConfirmed   = globalReport.TotalConfirmed;
-    globalData.NewDeaths        = globalReport.NewDeaths;
-    globalData.TotalDeaths      = globalReport.TotalDeaths;
-    globalData.NewRecovered     = globalReport.NewRecovered;
-    globalData.TotalRecovered   = globalReport.TotalRecovered;
-    globalData.Date             = new Date();
-    newData.set('global', globalData);*/
     
     var TotalConfirmed = 0;
     var TotalDeaths = 0;
@@ -1370,21 +1356,24 @@ function setDataOfCity(city, data1) {
     </head>
     <body>
         <div class="loader">
-            <div>Y</div>
-            <div>A</div>
-            <div>J</div>
-            <div>A</div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
         </div>
         <div class="container-fluid">
             <div class="row">
                 <div class="col-sm-8">
                     <div class="card" id="card1">
-                        <div class= "card-header bg-primary text-white">Real Time Covid-19 Info - V.2</div>
+                        <div class= "card-header bg-primary text-white">Real Time Covid-19 Tracker</div>
                         <div class="card-body">
                             <div id = "top10">
                                 <div class="dropdown">
                                     <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-                                      Top 10 Country
+                                      Top 10 Countries
                                     </button>
                                     <div class="dropdown-menu">
                                         <button onclick="getTopTenCountriesByDeath()" class="btn btn-danger">Top 10 Country By Death</button>
@@ -1492,7 +1481,7 @@ function setDataOfCity(city, data1) {
                                 </div>
                             </div>
                         </div>
-                        <div class="card-footer bg-info text-white">Copyright @ <script>document.write(new Date().getFullYear());</script> <b class="name" id="name1"></b></div>
+                        <div class="card-footer bg-info text-white">Copyright @ Sachin Motwani <br> Follow sachinmotwani99 on github for more awesome projects!! <b class="name" id="name1"></b></div>
                     </div>
                 </div>
             </div>
@@ -1550,7 +1539,7 @@ function setDataOfCity(city, data1) {
                 
                             <!-- Modal footer -->
                         <div class="modal-footer bg-info text-white">
-                            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">back to home page</button>
                         </div>
                     </div>
                 </div>
@@ -1559,4 +1548,3 @@ function setDataOfCity(city, data1) {
         <script type="text/javascript" src="https://canvasjs.com/assets/script/jquery.canvasjs.min.js"></script>
     </body>
 </html>
-
